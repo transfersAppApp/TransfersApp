@@ -1,0 +1,48 @@
+﻿@model TransfersApp.Models.ShuttleModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShuttleModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartRallyPoint.Coordinates)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartRallyPoint.Coordinates)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeSlot.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeSlot.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

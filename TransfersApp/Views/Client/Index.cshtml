@@ -1,0 +1,209 @@
+﻿@model TransfersApp.Models.SearchModels.ClientSearchModel
+@using CoordinateSharp;
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<h2>Index</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ClientModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Search Text</label>
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.SearchText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SearchText, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-offset-2 col-md-4">
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            IsDeleted
+        </th>
+        <th>
+            UserId
+        </th>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Phone Number
+        </th>
+        <th>
+            InsuranceSum
+        </th>
+        <th>
+            Balancce
+        </th>
+        <th>
+            MinPassengers
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+            HomeAddressLocaction
+        </th>
+        <th>
+            WorkAdressLocaction
+        </th>
+        <th>
+            HomeAddress
+        </th>
+        <th>
+            WorkAdress
+        </th>
+        <th>
+            WorkArrivingTime
+        </th>
+        <th>
+            WorkDepartureTime
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Items)
+    {
+        <tr>
+            <td>
+                @item.IsDeleted
+            </td>
+            <td>
+                @item.UserId
+            </td>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.PhoneNumber
+            </td>
+            <td>
+                @item.InsuranceSum
+            </td>
+            <td>
+                @item.Balancce
+            </td>
+            <td>
+                @item.MinPassengers
+            </td>
+            <td>
+                @item.Birthday
+            </td>
+            <td>
+                @if (@item.Gender == 0)
+                {
+                    <p>Male</p>
+                }
+                else
+                {
+                    <p>
+                        Female
+                    </p>
+                }   
+            </td>
+            <td>
+                @{
+                    if (item.HomeAddressLocaction != null)
+                    {
+                        try
+                        {
+                            Coordinate c;
+                            var rightCoords = item.HomeAddressLocaction;
+                            if (rightCoords.Contains(":"))
+                            {
+                                rightCoords = item.HomeAddressLocaction.Replace(',', '.').Replace(':', ',');
+                            }
+                            Coordinate.TryParse(rightCoords, DateTime.UtcNow, out c);// new Coordinate(lan, lon, DateTime.UtcNow);
+                            if (c != null)
+                            {
+                                string location = $"{c.Latitude.Degrees}°{c.Latitude.Minutes}'{c.Latitude.Seconds}\"N +{c.Longitude.Degrees}°{c.Longitude.Minutes}'{c.Longitude.Seconds}\"E";
+                                location = location.Replace(',', '.');
+                                string url = "https://www.google.com/maps/place/" + location + "/";
+                                url = url.Replace(" ", string.Empty);
+                                <a href="@url" target="_blank"> @item.HomeAddressLocaction</a>
+                            }
+                        }
+                        catch (Exception t)
+                        {
+                        }
+                    }
+                }
+            </td>
+            <td>
+                @{
+                    if (item.HomeAddressLocaction != null)
+                    {
+                        try
+                        {
+                            Coordinate c;
+                            var rightCoords = item.WorkAdressLocaction;
+                            if (rightCoords.Contains(":"))
+                            {
+                                rightCoords = item.WorkAdressLocaction.Replace(',', '.').Replace(':', ',');
+                            }
+                            Coordinate.TryParse(rightCoords, DateTime.UtcNow, out c);// new Coordinate(lan, lon, DateTime.UtcNow);
+                            if (c != null)
+                            {
+                                string location = $"{c.Latitude.Degrees}°{c.Latitude.Minutes}'{c.Latitude.Seconds}\"N +{c.Longitude.Degrees}°{c.Longitude.Minutes}'{c.Longitude.Seconds}\"E";
+                                location = location.Replace(',', '.');
+                                string url = "https://www.google.com/maps/place/" + location + "/";
+                                url = url.Replace(" ", string.Empty);
+                                <a href="@url" target="_blank"> @item.WorkAdressLocaction</a>
+                            }
+                        }
+                        catch (Exception t)
+                        {
+                        }
+                    }
+                }
+            </td>
+            <td>
+                @item.HomeAddress
+            </td>
+            <td>
+                @item.WorkAdress
+            </td>
+            <td>
+                @item.WorkArrivingTime
+            </td>
+            <td>
+                @item.WorkDepartureTime
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

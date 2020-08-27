@@ -1,0 +1,163 @@
+﻿@model TransfersApp.Models.SearchModels.TransferSearchModel
+@using CoordinateSharp;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Search Text</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.NameSearchText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NameSearchText, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Status</label>
+            <div class="col-md-3">
+                @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Shuttle</label>
+            <div class="col-md-3">
+                @Html.DropDownList("ShuttleId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ShuttleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            IsDeleted
+        </th>
+        <th>
+            IsActive
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            From
+        </th>
+        <th>
+            Destination
+        </th>
+        <th>
+            От последней остановки
+        </th>
+        <th>
+            Length
+        </th>
+        <th>
+            Client Name
+        </th>
+        <th>
+            DepartureTime
+        </th>
+        <th>
+            ArrivalTime
+        </th>
+        <th>
+            Shuttle Name
+        </th>
+        <th>
+            Shuttle Stop Order
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            MinimumClass
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Items)
+    {
+        <tr>
+            <td>
+                @item.IsDeleted
+            </td>
+            <th>
+                @item.IsActive
+            </th>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.From
+            </td>
+            <td>
+                @item.Destination
+            </td>
+            <td>
+                @item.LengthFromLastRallyPoint
+            </td>
+            <td>
+                @item.Length
+            </td>
+            <td>
+                @if (item.Client != null)
+                {
+                    <p>@item.Client.FirstName @item.Client.LastName</p>
+                }
+            </td>
+            <td>
+                @item.DepartureTime
+            </td>
+            <td>
+                @item.ArrivalTime
+            </td>
+            <td>
+                @if (item.Shuttle != null)
+                {
+                    <p>
+                        @item.Shuttle.Name
+                    </p>
+                }
+            </td>
+            <td>
+                @item.ShuttleStopOrder
+            </td>
+            <td>
+                @if (item.Status != null)
+                {
+                    <p>
+                        @item.Status.Name
+                    </p>
+                }
+            </td>
+            <td>
+                @item.MinimumClassId
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

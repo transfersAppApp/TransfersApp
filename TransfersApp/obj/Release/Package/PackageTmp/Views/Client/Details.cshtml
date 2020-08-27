@@ -1,0 +1,162 @@
+﻿@model TransfersApp.BL.Models.ClientModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ClientModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InsuranceSum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsuranceSum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balancce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balancce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinPassengers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinPassengers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeAddressLocaction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeAddressLocaction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkAdressLocaction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkAdressLocaction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkAdress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkAdress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkArrivingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkArrivingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkDepartureTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkDepartureTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

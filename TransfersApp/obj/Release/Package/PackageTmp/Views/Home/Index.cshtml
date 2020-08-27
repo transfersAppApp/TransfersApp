@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-1">
+        <p>
+            @Html.ActionLink("Shuttles", "Index", "Shuttle",null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+    </div>
+    <div class="col-md-2">
+        <p>
+            @Html.ActionLink("Transfers", "Index", "Transfer", null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+    </div>
+    <div class="col-md-2">
+        <p>
+            @Html.ActionLink("Clients", "Index", "Client", null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+    </div>
+    <div class="col-md-2">
+        <p>
+            @Html.ActionLink("Clients", "Index", "Client", null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+    </div>
+    <div class="col-md-2">
+        <p>
+            @Html.ActionLink("TimeSlots", "Index", "TimeSlot", null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+    </div>
+</div>

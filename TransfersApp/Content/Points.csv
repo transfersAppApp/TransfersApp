@@ -1,0 +1,5 @@
+Latitude,Longtitude,Description,Label,Placemark number
+59.845279, 30.251192, "пр-т. Ветеранов, 5", "pint.Label" , "pint.PlacemarkNumber"
+59.895036, 30.512673, "Kudrovo", "pint.Label" , "pint.PlacemarkNumber"
+59.931874, 30.439611, "Ladozhskaya Station", "pint.Label" , "pint.PlacemarkNumber"
+59.906791, 30.483048, "Stantsiya Metro Ulitsa Dybenko", "pint.Label" , "pint.PlacemarkNumber"

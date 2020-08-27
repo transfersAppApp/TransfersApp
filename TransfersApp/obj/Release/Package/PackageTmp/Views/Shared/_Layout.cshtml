@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfers</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Clients", "Index", "Client")</li>
+                    <li>@Html.ActionLink("Transfers", "Index", "Transfer")</li>
+                    <li>@Html.ActionLink("Shuttles", "Index", "Shuttle")</li>
+                    <li>@Html.ActionLink("RallyPoints", "Index", "RallyPoint")</li>
+                    <li>@Html.ActionLink("TimeSlots", "Index", "TimeSlot")</li>
+                    <!--<li>@Html.ActionLink("Client Transfers", "Index", "ClientTransfer")</li>
+    <li>@Html.ActionLink("Confirmations", "Index", "Confirmation")</li>
+    <li>@Html.ActionLink("Travels", "Index", "Travel")</li>
+    <li>@Html.ActionLink("Transport class", "Index", "TransportClass")</li>
+    <li>@Html.ActionLink("Wishes", "Index", "Wish")</li>
+    <li>@Html.ActionLink("Transfer Statuses", "Index", "TransferStatus")</li>
+    <li>@Html.ActionLink("Travel Statuses", "Index", "TravelStatus")</li>
+    <li>@Html.ActionLink("Tariffs", "Index", "Tariffs")</li>-->
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Transfers</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

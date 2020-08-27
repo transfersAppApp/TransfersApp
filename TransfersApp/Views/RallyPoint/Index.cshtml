@@ -1,0 +1,107 @@
+﻿@model TransfersApp.Models.SearchModels.RallyPointSearchModel
+@using CoordinateSharp;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Search Text</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.NameSearchText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NameSearchText, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-3">
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Export All To File", "GetFile")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Coordinates
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            IsProxy
+        </th>
+        <th>
+            IsDeleted
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Items)
+    {
+        <tr>
+            <td>
+                @{
+                    if (!string.IsNullOrEmpty(item.Coordinates))
+                    {
+
+
+                        try
+                        {
+
+                            Coordinate c;
+                            var rightCoords = item.Coordinates;
+                            if (rightCoords.Contains(":"))
+                            {
+                                rightCoords = item.Coordinates.Replace(',', '.').Replace(':', ',');
+                            }
+                            Coordinate.TryParse(rightCoords, DateTime.UtcNow, out c);// new Coordinate(lan, lon, DateTime.UtcNow);
+                            if (c != null)
+                            {
+                                string location = $"{c.Latitude.Degrees}°{c.Latitude.Minutes}'{c.Latitude.Seconds}\"N +{c.Longitude.Degrees}°{c.Longitude.Minutes}'{c.Longitude.Seconds}\"E";
+                                location = location.Replace(',', '.');
+                                string url = "https://www.google.com/maps/place/" + location + "/";
+                                url = url.Replace(" ", string.Empty);
+                                <a href="@url" target="_blank"> @item.Coordinates</a>
+                            }
+
+                        }
+                        catch (Exception t)
+                        {
+                        }
+                    }
+                }
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.IsProxy
+            </td>
+            <td>
+                @item.IsDeleted
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
